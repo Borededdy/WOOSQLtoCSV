@@ -1,12 +1,9 @@
-<?php
-        
+<?php 
         $servername = "localhost";
         $username = "root";
         $password = "";
         $dbname = "wordpress";
         $countorder = 0;
-        $csvheader = 'order_id,address_type,first_name,last_name,company,address_1,address_2,city,state,postcode,country,phone,email';
-
         $conn = mysqli_connect($servername,$username,$password,$dbname);
         
         if(!$conn){
@@ -17,12 +14,12 @@
         $userdata = mysqli_query($conn, $query);
         
         $list = array();
-        $list[0] = array('order_id','address_type','first_name','last_name','company','address_1','address_2','city','state','postcode','country','phone','email');
+        $list[0] = array('order_id','address_type','first_name','last_name','company','address_1','address_2','city','postcode','state','phone','email','order_item_type','product_id','variation_id','customer_id','date_created','product_qty','product_net_revenue','product_gross_revenue','coupon_amount','tax_amount','shipping_amount','shipping_tax_amount');
 
         if(mysqli_num_rows($userdata) > 0){
                 while($row = mysqli_fetch_assoc($userdata)){
                         $countorder++;
-                        $list[$countorder + 1] = array($row["order_id"], $row["address_type"], $row["first_name"], $row["last_name"], $row["company"], $row["address_1"], $row["address_2"], $row["city"], $row["state"], $row["postcode"], $row["phone"], $row["email"], $row["order_item_type"], $row["product_id"], $row["variation_id"], $row["customer_id"], $row["date_created"], $row["product_qty"], $row["product_net_revenue"], $row["product_gross_revenue"], $row["coupon_amount"], $row["tax_amount"], $row["shipping_amount"], $row["shipping_tax_amount"]);
+                        $list[$countorder + 1] = array($row["order_id"], $row["address_type"], $row["first_name"], $row["last_name"], $row["company"], $row["address_1"], $row["address_2"], $row["city"], $row["postcode"], $row["state"], $row["phone"], $row["email"], $row["order_item_type"], $row["product_id"], $row["variation_id"], $row["customer_id"], $row["date_created"], $row["product_qty"], $row["product_net_revenue"], $row["product_gross_revenue"], $row["coupon_amount"], $row["tax_amount"], $row["shipping_amount"], $row["shipping_tax_amount"]);
                 }
         } else {
                 echo "0 results";
